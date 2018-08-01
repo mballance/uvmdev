@@ -2,7 +2,7 @@
  * uvmdev_action_if.svh
  ****************************************************************************/
 
-class uvmdev_action_mgr_if;
+typedef class uvmdev_action_mgr_if;
 	
 /**
  * Class: uvmdev_action_if

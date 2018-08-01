@@ -17,21 +17,21 @@ class uvmdev_action_mgr extends uvm_object implements uvmdev_action_mgr_if;
 	// Map of active actions to a status whether they have started
 	local bit					m_active_map[uvmdev_action_if];
 
-	function new(name="uvmdev_action_mgr");
+	function new(string name="uvmdev_action_mgr");
 		super.new(name);
-
 	endfunction
 	
-	virtual function action_started(uvmdev_action_if a);
+	virtual function void action_started(uvmdev_action_if a);
 		m_active_map[a] = 1;
 		-> m_action_started_ev;
 	endfunction
 	
-	virtual function action_ended(uvmdev_action_if a);
+	virtual function void action_ended(uvmdev_action_if a);
 		m_active_map.delete(a);
+		-> m_action_ended_ev;
 	endfunction
 	
-	virtual function spawn(uvmdev_action_if a);
+	virtual function void spawn(uvmdev_action_if a);
 		m_active_map[a] = 0;
 		fork
 			begin
@@ -51,6 +51,7 @@ class uvmdev_action_mgr extends uvm_object implements uvmdev_action_mgr_if;
 	 */
 	virtual task await();
 		while (m_active_map.size() > 0) begin
+			
 			@(m_action_ended_ev);
 		end
 	endtask

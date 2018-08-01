@@ -15,7 +15,7 @@ class uvmdev_isr_base extends uvm_object implements uvmdev_isr_if;
 	uvmdev_irq_if					m_listeners[];
 	int unsigned					m_dev_irq[];
 	
-	function new(string name="uvmdev_isr_base", int unsigned n_irqs);
+	function new(string name="uvmdev_isr_base", int unsigned n_irqs=0);
 		super.new(name);
 		m_listeners = new[n_irqs];
 		m_dev_irq = new[n_irqs];
@@ -31,6 +31,7 @@ class uvmdev_isr_base extends uvm_object implements uvmdev_isr_if;
 		end else begin
 			`uvm_fatal(get_name(), $sformatf("IRQ %0d outside the range of %0d",
 					irq, m_listeners.size()));
+		end
 	endtask
 
 	virtual function void set_irq_listener(

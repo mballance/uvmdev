@@ -7,7 +7,7 @@
  * 
  * TODO: Add class documentation
  */
-class uvmdev_if;
+interface class uvmdev_if;
 
 
 endclass

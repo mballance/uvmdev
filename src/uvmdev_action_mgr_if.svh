@@ -9,11 +9,11 @@
  */
 interface class uvmdev_action_mgr_if;
 
-	pure virtual function action_started(uvmdev_action_if a);
+	pure virtual function void action_started(uvmdev_action_if a);
 	
-	pure virtual function action_ended(uvmdev_action_if a);
+	pure virtual function void action_ended(uvmdev_action_if a);
 	
-	pure virtual function spawn(uvmdev_action_if a);
+	pure virtual function void spawn(uvmdev_action_if a);
 
 	/**
 	 * Task: await
@@ -23,7 +23,6 @@ interface class uvmdev_action_mgr_if;
 	 * Parameters:
 	 */
 	pure virtual task await();
-
 
 endclass
 
