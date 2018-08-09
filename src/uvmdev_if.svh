@@ -9,6 +9,14 @@
  */
 interface class uvmdev_if;
 
+	/**
+	 * Task: init
+	 * 
+	 * Initializes the device by programming registers, etc
+	 * 
+	 * Parameters:
+	 */
+	pure virtual task init();
 
 endclass
 

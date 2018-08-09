@@ -28,6 +28,18 @@ class uvmdev_mgr;
 		return m_devices[id];
 	endfunction
 	
+	task init_devices();
+		int unsigned idx;
+		
+		if (m_devices.first(idx)) begin
+			do begin
+				$display("--> Init %p", m_devices[idx]);
+				m_devices[idx].init();
+				$display("<-- Init %p", m_devices[idx]);
+			end while (m_devices.next(idx));
+		end
+	endtask
+	
 	static function uvmdev_mgr inst();
 		return m_inst;
 	endfunction
@@ -35,6 +47,14 @@ class uvmdev_mgr;
 	static function uvmdev_if get(int unsigned id);
 		return inst().get_device(id);
 	endfunction
+	
+	static function void add(int unsigned id, uvmdev_if dev);
+		inst().add_device(id, dev);
+	endfunction
+	
+	static task init();
+		inst().init_devices();
+	endtask
 
 endclass
 

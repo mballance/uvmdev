@@ -9,18 +9,21 @@ typedef class uvmdev_irq_if;
  * 
  * Utility base class for ISR implementations
  */
-class uvmdev_isr_base extends uvm_object implements uvmdev_isr_if;
-	`uvm_object_utils(uvmdev_isr_base)
+virtual class uvmdev_isr_base #(type T=int) extends uvm_subscriber #(T) implements uvmdev_isr_if;
+	`uvm_component_utils(uvmdev_isr_base)
 
 	uvmdev_irq_if					m_listeners[];
 	int unsigned					m_dev_irq[];
 	
-	function new(string name="uvmdev_isr_base", int unsigned n_irqs=0);
-		super.new(name);
+	function new(string	name="uvmdev_isr_base", uvm_component parent);
+		super.new(name, parent);
+	endfunction
+	
+	function void init(int unsigned n_irqs);
 		m_listeners = new[n_irqs];
 		m_dev_irq = new[n_irqs];
 	endfunction
-
+	
 	virtual task send_irq(int unsigned irq);
 		if (m_listeners.size > irq) begin
 			if (m_listeners[irq] != null) begin
@@ -34,6 +37,20 @@ class uvmdev_isr_base extends uvm_object implements uvmdev_isr_if;
 		end
 	endtask
 
+	/**
+	 * Function: set_irq_listener
+	 * 
+	 * Connects an interrupt-request listener to a 
+	 * specific irq slot.
+	 * 
+	 * Parameters:
+	 * - int irq 
+	 * - uvmdev_irq_if irq_if 
+	 * - int dev_irq 
+	 * 
+	 * Returns:
+	 *   void
+	 */
 	virtual function void set_irq_listener(
 			int unsigned 	irq,
 			uvmdev_irq_if 	irq_if,

@@ -22,6 +22,8 @@ package uvmdev_pkg;
 	`include "uvmdev_action_mgr.svh"
 	
 	typedef int unsigned uint32_t;
+	typedef shortint unsigned uint16_t;
+	typedef byte unsigned uint8_t;
 
 endpackage
 
