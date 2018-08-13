@@ -2,6 +2,8 @@
  * uvmdev_if.svh
  ****************************************************************************/
 
+typedef class uvmdev_mgr;
+
 /**
  * Class: uvmdev_if
  * 
@@ -16,7 +18,9 @@ interface class uvmdev_if;
 	 * 
 	 * Parameters:
 	 */
-	pure virtual task init();
+	pure virtual task init(
+			uvmdev_mgr 		mgr, 
+			int unsigned 	id);
 
 endclass
 
