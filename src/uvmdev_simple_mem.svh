@@ -25,7 +25,7 @@ class uvmdev_simple_mem implements uvmdev_mem_if;
 		m_data = new[m_addr_limit-m_addr_base+1];
 		
 		for (int i=0; i<m_data.size(); i++) begin
-			m_data[i] = init_data[i%m_data.size()];
+			m_data[i] = init_data[i%init_data.size()];
 		end
 	endfunction
 	

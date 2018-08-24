@@ -16,22 +16,22 @@
 	end
 	
 `define uvmdev_task_decl_1(devtype, fname, t1) \
-	task fname (uint32_t id, t1 p1); \
+	task automatic devname``_``fname (uint32_t id, t1 p1); \
 		`uvmdev_call(devtype, id, fname(p1)); \
 	endtask
 	
 `define uvmdev_task_decl_2(devtype, fname, t1, t2) \
-	task fname (uint32_t id, t1 p1, t2 p2); \
+	task automatic devtype``_``fname (uint32_t id, t1 p1, t2 p2); \
 		`uvmdev_call(devtype, id, fname(p1, p2)); \
 	endtask
 	
 `define uvmdev_task_decl_3(devtype, fname, t1, t2, t3) \
-	task fname (uint32_t id, t1 p1, t2 p2, t3 p3); \
+	task automatic devtype``_``fname (uint32_t id, t1 p1, t2 p2, t3 p3); \
 		`uvmdev_call(devtype, id, fname(p1, p2, p3)); \
 	endtask
 	
 `define uvmdev_task_decl_4(devtype, fname, t1, t2, t3, t4) \
-	task fname (uint32_t id, t1 p1, t2 p2, t3 p3, t4 p4); \
+	task automatic devtype``_``fname (uint32_t id, t1 p1, t2 p2, t3 p3, t4 p4); \
 		`uvmdev_call(devtype, id, fname(p1, p2, p3, p4)); \
 	endtask
 

@@ -71,9 +71,9 @@ class uvmdev_mgr;
 		inst().init_devices();
 	endtask
 	
-	static task set_mem_if(uvmdev_mem_if mem_if);
+	static function void set_mem_if(uvmdev_mem_if mem_if);
 		inst().m_mem_if = mem_if;
-	endtask
+	endfunction
 
 endclass
 
