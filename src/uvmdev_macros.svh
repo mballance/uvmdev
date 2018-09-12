@@ -9,7 +9,10 @@
 		uvmdev_if d = uvmdev_mgr::get(id); \
 		devtype dev; \
 		if (!$cast(dev, d)) begin \
-			$display("Error: device %0d is not of correct type", id); \
+			uvm_object o; \
+			$cast(o, d); \
+			$display("Error: device %0d is not of correct type ; expect=%0s received=%0s", \
+				id, `"devtype`", o.get_type_name()); \
 		end else begin \
 			dev . call ; \
 		end \
@@ -33,6 +36,11 @@
 `define uvmdev_task_decl_4(devtype, fname, t1, t2, t3, t4) \
 	task automatic devtype``_``fname (uint32_t id, t1 p1, t2 p2, t3 p3, t4 p4); \
 		`uvmdev_call(devtype, id, fname(p1, p2, p3, p4)); \
+	endtask
+	
+`define uvmdev_task_decl_5(devtype, fname, t1, t2, t3, t4, t5) \
+	task automatic devtype``_``fname (uint32_t id, t1 p1, t2 p2, t3 p3, t4 p4, t5 p5); \
+		`uvmdev_call(devtype, id, fname(p1, p2, p3, p4, p5)); \
 	endtask
 
 /**

@@ -29,7 +29,11 @@ class uvmdev_mgr;
 	
 	function uvmdev_if get_device(
 		int unsigned		id);
-		return m_devices[id];
+		if (m_devices.exists(id)) begin
+			return m_devices[id];
+		end else begin
+			return null;
+		end
 	endfunction
 	
 	task init_devices();
@@ -76,5 +80,41 @@ class uvmdev_mgr;
 	endfunction
 
 endclass
+task automatic pvm_iowrite8(byte unsigned data, longint unsigned addr);
+	uvmdev_mgr mgr = uvmdev_mgr::inst();
+	
+	mgr.m_mem_if.write8(data, addr);
+endtask
+
+task automatic pvm_ioread8(output byte unsigned data, input longint unsigned addr);
+	uvmdev_mgr mgr = uvmdev_mgr::inst();
+	
+	mgr.m_mem_if.read8(data, addr);
+endtask
+
+task automatic pvm_iowrite16(shortint unsigned data, longint unsigned addr);
+	uvmdev_mgr mgr = uvmdev_mgr::inst();
+	
+	mgr.m_mem_if.write16(data, addr);
+endtask
+
+task automatic pvm_ioread16(output shortint unsigned data, input longint unsigned addr);
+	uvmdev_mgr mgr = uvmdev_mgr::inst();
+	
+	mgr.m_mem_if.read16(data, addr);
+endtask
+
+task automatic pvm_iowrite32(int unsigned data, longint unsigned addr);
+	uvmdev_mgr mgr = uvmdev_mgr::inst();
+	
+	mgr.m_mem_if.write32(data, addr);
+endtask
+
+task automatic pvm_ioread32(output int unsigned data, input longint unsigned addr);
+	uvmdev_mgr mgr = uvmdev_mgr::inst();
+	
+	mgr.m_mem_if.read32(data, addr);
+endtask
+
 
 
