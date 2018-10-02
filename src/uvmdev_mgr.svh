@@ -100,8 +100,8 @@ class uvmdev_mgr extends uvm_component;
 		inst().init_devices();
 	endtask
 	
-	static function void set_mem_if(uvmdev_mem_if mem_if);
-		inst().m_mem_if = mem_if;
+	function void set_mem_if(uvmdev_mem_if mem_if);
+		m_mem_if = mem_if;
 	endfunction
 
 endclass
