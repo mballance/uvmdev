@@ -18,8 +18,13 @@
 		end \
 	end
 	
+`define uvmdev_task_decl_0(devtype, fname) \
+	task automatic devtype``_``fname (uint32_t id); \
+		`uvmdev_call(devtype, id, fname()); \
+	endtask
+	
 `define uvmdev_task_decl_1(devtype, fname, t1) \
-	task automatic devname``_``fname (uint32_t id, t1 p1); \
+	task automatic devtype``_``fname (uint32_t id, t1 p1); \
 		`uvmdev_call(devtype, id, fname(p1)); \
 	endtask
 	
