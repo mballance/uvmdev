@@ -48,6 +48,35 @@
 		`uvmdev_call(devtype, id, fname(p1, p2, p3, p4, p5)); \
 	endtask
 
+`define uvmdev_function_decl_0(devtype, fname) \
+	function automatic devtype``_``fname (uint32_t id); \
+			`uvmdev_call(devtype, id, fname()); \
+	endfunction
+	
+`define uvmdev_function_decl_1(devtype, fname, t1) \
+	function automatic devtype``_``fname (uint32_t id, t1 p1); \
+			`uvmdev_call(devtype, id, fname(p1)); \
+	endfunction
+	
+`define uvmdev_function_decl_2(devtype, fname, t1, t2) \
+	function automatic devtype``_``fname (uint32_t id, t1 p1, t2 p2); \
+			`uvmdev_call(devtype, id, fname(p1, p2)); \
+	endfunction
+	
+`define uvmdev_function_decl_3(devtype, fname, t1, t2, t3) \
+	function automatic devtype``_``fname (uint32_t id, t1 p1, t2 p2, t3 p3); \
+			`uvmdev_call(devtype, id, fname(p1, p2, p3)); \
+	endfunction
+	
+`define uvmdev_function_decl_4(devtype, fname, t1, t2, t3, t4) \
+	function automatic devtype``_``fname (uint32_t id, t1 p1, t2 p2, t3 p3, t4 p4); \
+			`uvmdev_call(devtype, id, fname(p1, p2, p3, p4)); \
+	endfunction
+	
+`define uvmdev_function_decl_5(devtype, fname, t1, t2, t3, t4, t5) \
+	function automatic devtype``_``fname (uint32_t id, t1 p1, t2 p2, t3 p3, t4 p4, t5 p5); \
+			`uvmdev_call(devtype, id, fname(p1, p2, p3, p4, p5)); \
+	endfunction	
 /**
  * Convenience macro for referring to the closure
  */

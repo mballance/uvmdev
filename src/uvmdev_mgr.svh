@@ -42,7 +42,9 @@ class uvmdev_mgr extends uvm_component;
 	
 	function void raise_objection(uvm_object obj, string description="", int count=1);
 		if (m_run_phase != null) begin
-			m_run_phase.raise_objection(obj, description, count);
+//			`uvm_info(get_name(), $sformatf("== raise_objection %0s %p", description,
+//					m_run_phase.get_objection()), UVM_LOW);
+//			m_run_phase.raise_objection(this, description, count);
 		end else begin
 			`uvm_fatal("uvmdev_mgr", "Attempting to raise an objection on a null handle");
 		end
@@ -50,7 +52,9 @@ class uvmdev_mgr extends uvm_component;
 	
 	function void drop_objection(uvm_object obj, string description="", int count=1);
 		if (m_run_phase != null) begin
-			m_run_phase.drop_objection(obj, description, count);
+//			`uvm_info(get_name(), $sformatf("== drop_objection %0s %p", description,
+//					m_run_phase.get_objection()), UVM_LOW);
+//			m_run_phase.drop_objection(this, description, count);
 		end else begin
 			`uvm_fatal("uvmdev_mgr", "Attempting to drop an objection on a null handle");
 		end
